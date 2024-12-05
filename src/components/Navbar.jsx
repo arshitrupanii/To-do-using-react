@@ -3,7 +3,7 @@
 const Navbar = () => {
   return (
     <div>
-      
+      <h1 className="bg-black text-white">this is navbar</h1>
     </div>
   )
 }
