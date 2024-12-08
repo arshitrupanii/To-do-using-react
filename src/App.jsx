@@ -10,12 +10,13 @@ function App() {
 
   return (
     <>
-      <Navbar />
+      <div className="main w-[100vw] h-[100vw] bg-sky-500">
+        <div className='container bg-white font-serif w-[40%] mt-12 h-[30%] mx-auto'>
+          <h1 className='font-roboto font-semibold text-4xl '>Todo List App</h1>
 
-      <Container />
+        </div>
 
-
-
+      </div>
     </>
   )
 }
