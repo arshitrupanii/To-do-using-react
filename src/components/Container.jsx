@@ -30,7 +30,7 @@ const container = () => {
                 <label className="font-bold text-[26px] mt-4" htmlFor="add">Add a Todo</label>
 
                 <div className="flex items-center">
-                    <input onChange={handleChange} value={todo} className="h-[35px] w-[75%] mt-3 rounded-3xl p-3" type="text" />
+                    <input onChange={handleChange} value={todo} className="h-[30px] w-[75%] mt-3 rounded-3xl px-3" type="text" />
                     <button onClick={handleAdd} className='bg-violet-800 mt-3 mx-2 rounded-full hover:bg-violet-950 disabled:bg-violet-500 p-4 py-2 text-sm font-bold text-white'>Add</button>
                 </div>
 
@@ -47,7 +47,7 @@ const container = () => {
                     {/* this all the tasks */}
 
                     {todos.map(item => {
-                         return (<div key={item.id} className="flex gap-4 mt-2 justify-between">
+                         return (<div key={item.id} className="flex gap-4 mt-2 ">
                             <div className="flex gap-4 mt-2 justify-center">
                                 <input type="checkbox" value={item.iscompleted} onChange={item.iscompleted =true} name="task_finished_not" id="" />
                                 <p className={item.iscompleted ? "line-through" : ""}>{item.todo}</p>
