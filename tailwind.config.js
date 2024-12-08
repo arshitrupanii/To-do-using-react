@@ -6,7 +6,11 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        roboto: ['Roboto', 'sans-serif'], // Add Roboto to the font family stack
+      },
+    },
   },
   plugins: [],
 }
