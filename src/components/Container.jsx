@@ -1,11 +1,26 @@
 import { useState } from "react"
+import { v4 as uuidv4 } from 'uuid';
+
 
 const container = () => {
-    const [checked, setchecked] = useState(false)
+    const [todo, settodo] = useState("")
+    const [todos, settodos] = useState([])
 
-    const check_handler = () => {
-        setchecked(!checked)
+
+    const handleChange = (e) => {
+        settodo(e.target.value)
     }
+
+    const handlecheckbox = (e) => {
+      
+    }
+    
+    const handleAdd = () => {
+        settodos([...todos, {id:uuidv4(), todo, iscompleted: false }])
+        settodo("")
+    }
+
+
 
     return (
         <div>
@@ -15,8 +30,8 @@ const container = () => {
                 <label className="font-bold text-[26px] mt-4" htmlFor="add">Add a Todo</label>
 
                 <div className="flex items-center">
-                    <input className="h-[35px] w-[75%] mt-3 rounded-3xl p-3" type="text" />
-                    <button className='bg-violet-800 mt-3 mx-2 rounded-full hover:bg-violet-950 disabled:bg-violet-500 p-4 py-2 text-sm font-bold text-white'>Save</button>
+                    <input onChange={handleChange} value={todo} className="h-[35px] w-[75%] mt-3 rounded-3xl p-3" type="text" />
+                    <button onClick={handleAdd} className='bg-violet-800 mt-3 mx-2 rounded-full hover:bg-violet-950 disabled:bg-violet-500 p-4 py-2 text-sm font-bold text-white'>Add</button>
                 </div>
 
                 <div className="flex mb-5 gap-2 mt-5">
@@ -30,31 +45,22 @@ const container = () => {
                     <p className="text-[25px] font-bold">Your todos</p>
 
                     {/* this all the tasks */}
-                    <div className="flex gap-4 mt-2 justify-between">
-                        <div className="flex gap-4 mt-2 justify-center">
-                            <input type="checkbox" onChange={check_handler} name="task_finished_not" id="" />
-                            <p className={checked ? "line-through text-gray-500" : ""}>Sabji lena hain</p>
-                        </div>
 
-                        <div>
-                            <button className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'><img className="w-[20px]" src="https://img.icons8.com/?size=100&id=6697&format=png&color=FFFFFF" alt="" /></button>
-                            <button className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'><img className="w-[20px]" src="https://img.icons8.com/?size=100&id=67884&format=png&color=FFFFFF" alt="" /></button>
+                    {todos.map(item => {
+                         return (<div key={item.id} className="flex gap-4 mt-2 justify-between">
+                            <div className="flex gap-4 mt-2 justify-center">
+                                <input type="checkbox" value={item.iscompleted} onChange={item.iscompleted =true} name="task_finished_not" id="" />
+                                <p className={item.iscompleted ? "line-through" : ""}>{item.todo}</p>
+                            </div>
 
-                        </div>
-                    </div>
+                            <div>
+                                <button className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'><img className="w-[20px]" src="https://img.icons8.com/?size=100&id=6697&format=png&color=FFFFFF" alt="" /></button>
+                                <button className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'><img className="w-[20px]" src="https://img.icons8.com/?size=100&id=67884&format=png&color=FFFFFF" alt="" /></button>
 
-                    <div className="flex gap-4 mt-2 justify-between">
-                        <div className="flex gap-4 mt-2 justify-center">
-                            <input type="checkbox" checked={checked} onChange={check_handler} name="task_finished_not" id="" />
-                            <p className={checked ? "line-through text-gray-500" : ""}>Sabji lena hain</p>
-                        </div>
+                            </div>
+                        </div>)
+                    })}
 
-                        <div>
-                            <button className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'><img className="w-[20px]" src="https://img.icons8.com/?size=100&id=6697&format=png&color=FFFFFF" alt="" /></button>
-                            <button className='bg-violet-800 hover:bg-violet-950 p-2 py-1 text-sm font-bold text-white rounded-md mx-1'><img className="w-[20px]" src="https://img.icons8.com/?size=100&id=67884&format=png&color=FFFFFF" alt="" /></button>
-
-                        </div>
-                    </div>
 
 
 
